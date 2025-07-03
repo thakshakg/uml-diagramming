@@ -1,0 +1,3 @@
+pytest
+httpx # For testing FastAPI apps
+requests # Often useful for simpler test cases or if httpx causes issues in test client context

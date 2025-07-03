@@ -1,0 +1,33 @@
+{
+  "name": "uml-diagram-ui",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^4.9.5"
+  },
+  "scripts": {
+    "start": "echo \"React app start script not implemented yet. Use create-react-app or similar.\"",
+    "build": "echo \"React app build script not implemented yet.\"",
+    "test": "echo \"React app test script not implemented yet.\""
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

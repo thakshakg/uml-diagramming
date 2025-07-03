@@ -1,0 +1,7 @@
+pytest
+httpx # For TestClient
+pytest-asyncio # For async pytest functions
+ sqlalchemy # Already in main, but good to list for test setup
+ sqlmodel # Already in main
+ asyncpg # Already in main
+ minio # Already in main

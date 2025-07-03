@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+sqlmodel
+asyncpg # Async driver for PostgreSQL
+psycopg2-binary # Standard driver, often useful as a fallback or for Alembic
+alembic # For database migrations
+minio # MinIO client library
