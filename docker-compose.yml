@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  api-gateway:
+    build: ./gateway
+    ports: ['8000:8000']
+    depends_on:
+      - db
+      - minio
+      - diagram-service # Added diagram-service as a dependency
+    environment: # Added environment variables for service discovery
+      DIAGRAM_SERVICE_URL: http://diagram-service:8001
+  diagram-service:
+    build: ./diagram
+    ports: ['8001:8001'] # Expose port for direct access if needed, though typically accessed via gateway
+    depends_on:
+      - db
+      - minio
+    environment: # Added environment variables for db and minio
+      DATABASE_URL: postgresql://uml_user:secret@db/uml_db
+      MINIO_URL: http://minio:9000
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+  db:
+    image: postgres:15
+    volumes: ['db-data:/var/lib/postgresql/data']
+    environment:
+      POSTGRES_USER: uml_user
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: uml_db
+    ports: ['5432:5432'] # Expose port for local development/debugging
+  minio:
+    image: minio/minio
+    command: server /data --console-address ":9001" # Added console address
+    environment:
+      MINIO_ROOT_USER: minio # Changed from MINIO_ACCESS_KEY
+      MINIO_ROOT_PASSWORD: minio123 # Changed from MINIO_SECRET_KEY
+    ports:
+      - '9000:9000'
+      - '9001:9001' # Expose MinIO console
+    volumes: ['minio-data:/data']
+volumes:
+  db-data:
+  minio-data:
